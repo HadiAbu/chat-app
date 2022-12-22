@@ -15,14 +15,16 @@ const io = new Server(server, {
   },
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/chat-app/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "client", "chat-app", "build", "index.html")
-    );
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
+});
+// } else {
+//   app.get("/", (req, res) => {
+//     res.send("API");
+//   });
+// }
 
 io.on("connection", (socket) => {
   console.log("Connection estableshed with socket id: ", socket.id);
@@ -45,8 +47,16 @@ io.on("connection", (socket) => {
   });
 });
 
-const port = process.env.PORT;
+// const port = process.env.PORT;
+const port = 3001;
 
 server.listen(port, () => {
   console.log(`server running at: ${port}`);
+  // console.log(Object.keys(process.env));
 });
+
+// const port = 3001;
+
+// server.listen(port, () => {
+//   console.log(`server running at: ${port}`);
+// });
