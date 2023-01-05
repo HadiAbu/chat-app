@@ -1,2 +1,2 @@
-# chat-app
-A user friendly fullstack chat-app using React, NodeJS (express) and socket.io
+# Chat Room App
+A user friendly fullstack chat rooms app using React, NodeJS (express) and socket.io
